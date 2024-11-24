@@ -26,13 +26,6 @@ const EditModal = () => {
     price: "",
   });
 
-  useEffect(() => {
-    if (receivedData) {
-      setShow(true);
-      fetchData();
-    }
-  }, [fetchData]);
-
   const fetchData = async () => {
     try {
       const selected = await axios.get(updateServiceApi);
@@ -41,6 +34,13 @@ const EditModal = () => {
       console.error("Error:", err);
     }
   };
+
+  useEffect(() => {
+    if (receivedData) {
+      setShow(true);
+      fetchData();
+    }
+  }, [receivedData]);
 
   const handleClose = () => {
     setShow(false);
