@@ -16,7 +16,6 @@ const AddModal = () => {
   const starsRef = useRef(null);
   const horoRef = useRef(null);
   const priceRef = useRef(null);
-  const [error, setError] = useState(null);
   const [show, setShow] = useState(false);
   const [service, setService] = useState({
     title: "",
@@ -55,12 +54,10 @@ const AddModal = () => {
       console.log("Service created successfully!", response.data);
 
       setService({ title: "", stars: "", horo: "", price: "" });
-      setError(null);
       alert("서비스가 추가되었습니다.");
       handleClose();
     } catch (error) {
       console.error("Error creating service:", error.response || error.message);
-      setError("서비스 생성 중 오류가 발생했습니다.");
     }
   };
 

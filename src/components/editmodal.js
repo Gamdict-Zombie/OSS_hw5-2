@@ -17,7 +17,6 @@ const EditModal = () => {
   const starsRef = useRef(null);
   const horoRef = useRef(null);
   const priceRef = useRef(null);
-  const [error, setError] = useState(null);
   const [show, setShow] = useState(false);
   const [service, setService] = useState({
     title: "",
@@ -26,21 +25,22 @@ const EditModal = () => {
     price: "",
   });
 
-  const fetchData = async () => {
-    try {
-      const selected = await axios.get(updateServiceApi);
-      setService(selected.data);
-    } catch (err) {
-      console.error("Error:", err);
-    }
-  };
-
   useEffect(() => {
     if (receivedData) {
+      const fetchData = async () => {
+        try {
+          const selected = await axios.get(updateServiceApi);
+          setService(selected.data);
+        } catch (err) {
+          console.error("Error:", err);
+        }
+      };
+  
       setShow(true);
       fetchData();
     }
-  }, [receivedData]);
+  }, [receivedData, updateServiceApi]);
+  
 
   const handleClose = () => {
     setShow(false);
@@ -65,13 +65,10 @@ const EditModal = () => {
       const response = await axios.put(updateServiceApi, service);
       console.log("Service updated successfully!", response.data);
 
-      setError(null);
-
       alert("서비스가 수정되었습니다.");
       handleClose();
     } catch (error) {
       console.error("Error updating service:", error.response || error.message);
-      setError("서비스 수정 중 오류가 발생했습니다.");
     }
   };
 
