@@ -83,7 +83,7 @@ const AddModal = () => {
     <div>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>서비스 수정</Modal.Title>
+          <Modal.Title>서비스 추가</Modal.Title>
         </Modal.Header>
         <Modal.Body>
             <form className="formwrap" onSubmit={handleSubmit}>
