@@ -5,7 +5,6 @@ import { useLocation, useParams } from 'react-router-dom';
 import "./main.css";
 import axios from "axios";
 import { useRef } from "react";
-import { Navigate } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 
 const EditModal = () => {
@@ -32,7 +31,7 @@ const EditModal = () => {
       setShow(true);
       fetchData();
     }
-  }, [receivedData]);
+  }, [fetchData]);
 
   const fetchData = async () => {
     try {
